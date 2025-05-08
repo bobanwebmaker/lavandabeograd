@@ -1,0 +1,105 @@
+/* Stilovi za pravne stranice */
+.legal-section {
+  padding: 6rem 0;
+  background-color: var(--lavender-50);
+}
+
+.legal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--lavender-800);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.legal-updated {
+  font-style: italic;
+  color: var(--lavender-600);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.legal-block {
+  margin-bottom: 2rem;
+}
+
+.legal-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--lavender-700);
+  margin-bottom: 1rem;
+}
+
+.legal-block p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.legal-block ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-block li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.legal-block a {
+  color: var(--lavender-600);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legal-block a:hover {
+  color: var(--lavender-800);
+  text-decoration: underline;
+}
+
+/* Responsive stilovi */
+@media (max-width: 768px) {
+  .legal-title {
+    font-size: 2rem;
+  }
+  
+  .legal-content {
+    padding: 1.5rem;
+  }
+  
+  .legal-block h2 {
+    font-size: 1.25rem;
+  }
+  
+  .legal-block p,
+  .legal-block li {
+    font-size: 0.9375rem; /* 15px */
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-title {
+    font-size: 1.75rem;
+  }
+  
+  .legal-content {
+    padding: 1rem;
+  }
+  
+  .legal-block h2 {
+    font-size: 1.125rem;
+  }
+  
+  .legal-block p,
+  .legal-block li {
+    font-size: 0.8125rem; /* 13px */
+  }
+}
