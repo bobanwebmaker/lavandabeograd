@@ -1,0 +1,78 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Set the base directory
+RewriteBase /
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Remove trailing slash (for non-directory URLs)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# Remove .php extension (for non-PHP URLs)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# Internally add .php extension (for direct access to PHP files)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# Remove index.php from URL
+RewriteCond %{THE_REQUEST} ^.*/index\.php
+RewriteRule ^(.*)index\.php$ /$1 [R=301,L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect .htaccess file
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Allow all bots (no restrictions)
+User-agent: *
+Allow: /
+
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
+</IfModule>
+
+# Set browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Set default character encoding
+AddDefaultCharset UTF-8
+
+# Enable keep-alive connections
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+# Custom 404 error page
+ErrorDocument 404 /404.php
