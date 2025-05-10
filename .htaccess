@@ -75,4 +75,7 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 # Custom 404 error page
-ErrorDocument 404 /404.php
+ErrorDocument 404 /404.html
+
+#  Sigurnosne postavke
+ServerSignature Off
