@@ -252,7 +252,7 @@ const currentTimeDisplay = document.querySelector('.current-time');
 const durationDisplay = document.querySelector('.duration');
 const volumeSlider = document.getElementById('volume-slider');
 const muteBtn = document.getElementById('mute-btn');
-
+audioPlayer.loop = true;
 // Play/Pause funkcionalnost
 playPauseBtn.addEventListener('click', () => {
   if (audioPlayer.paused) {
